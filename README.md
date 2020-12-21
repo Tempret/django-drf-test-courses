@@ -9,9 +9,10 @@ This README would normally document whatever steps are necessary to get your app
 
 ### How do I get set up? ###
 
-1) `pipenv --python3.8` 
-2) `pipenv install`
+1) `pipenv --python 3.8` 
+2) `pipenv shell` 
+3) `pipenv install`
 
-### To rnu tests ###
+### To run tests ###
 
 `./manage.py test`
