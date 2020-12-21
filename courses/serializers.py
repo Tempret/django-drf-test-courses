@@ -24,7 +24,7 @@ class CourseSerializer(serializers.ModelSerializer):
     participants = serializers.SerializerMethodField()
 
     def get_students_count(self, obj: Course) -> int:
-        return obj.participants.count()
+        return obj.participants_count
 
     def get_participants(self, obj: Course) -> list:
         queryset = CourseParticipant.objects.filter(course=obj).select_related('student')[:10]

@@ -120,7 +120,7 @@ class CoursesTestCase(APITransactionTestCase):
                 for student in students
             ])
 
-            with self.assertNumQueries(11):
+            with self.assertNumQueries(6):
                 result = self.client.get(reverse('api:course-list'))
 
             self.assertEqual(courses[0].participants.count(), 20)
@@ -210,7 +210,7 @@ class CoursesTestCase(APITransactionTestCase):
             self.client.post(reverse('api:course-unassign', kwargs={'pk': course.pk, 'student_pk': student.pk}))
 
             # Check course after unassignment
-            with self.assertNumQueries(3):
+            with self.assertNumQueries(2):
                 list_result = self.client.get(reverse('api:course-list'))
                 self.assertEqual(list_result.data[0]['students_count'], 0)
 

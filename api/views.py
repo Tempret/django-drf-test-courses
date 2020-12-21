@@ -14,7 +14,7 @@ from students.models import Student
 
 
 class CoursesViewSet(viewsets.ModelViewSet):
-    queryset = Course.objects.all()
+    queryset = Course.objects.all().annotate(participants_count=Count('participants'))
     serializer_class = CourseSerializer
     renderer_classes = (CSVRenderer,) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
 
@@ -45,7 +45,7 @@ class CoursesViewSet(viewsets.ModelViewSet):
         return Response({}, status=status.HTTP_201_CREATED)
 
     @action(detail=False, methods=['get'], name='report')
-    def report(self, request, **kwargs):
+    def report(self, request, **kwargs) -> Response:
         query = Student.objects.all().annotate(
             num_assigned=Count('courses'),
             num_completed=Count('courses', filter=Q(courses__completed=True))
