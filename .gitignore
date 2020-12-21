@@ -1,0 +1,25 @@
+*.pyc
+*.pyo
+*.pyw
+*.log
+*.db
+*.swp
+*.egg-info
+*.sublime-project
+*.sublime-workspace
+*.pot
+*.pid
+*.mo
+tmp
+*.DS_Store
+
+# IDE config
+.idea/
+.eslintrc.js
+
+# python virtualenv
+/.python
+/venv
+/.venv
+Pipfile.lock
+db.sqlite3
